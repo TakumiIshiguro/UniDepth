@@ -4,7 +4,8 @@ h5py>=3.10.0
 huggingface-hub>=0.22.0
 imageio
 matplotlib
-numpy>=2.0.0
+numpy>=1.24.0,<2.0.0; python_version < "3.9"
+numpy>=2.0.0; python_version >= "3.9"
 opencv-python
 pandas
 pillow>=10.2.0

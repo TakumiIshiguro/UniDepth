@@ -3,12 +3,13 @@ Author: Luigi Piccinelli
 Licensed under the CC-BY NC 4.0 license (http://creativecommons.org/licenses/by-nc/4.0/)
 """
 
+from __future__ import annotations
+
 import os
 
 import matplotlib.pyplot as plt
 import numpy as np
 import torch
-import wandb
 from PIL import Image
 
 from unidepth.utils.misc import ssi_helper
@@ -134,6 +135,11 @@ def save_file_ply(xyz, rgb, pc_file):
 
 # really awful fct... FIXME
 def log_train_artifacts(rgbs, gts, preds, ds_name, step, infos={}):
+    # wandb is only required for training artifact logging. Importing it at
+    # module load time prevents inference-only environments from importing
+    # UniDepth, even though inference never calls this function.
+    import wandb
+
     rgbs = [
         (127.5 * (rgb + 1))
         .clip(0, 255)

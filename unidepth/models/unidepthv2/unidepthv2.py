@@ -3,6 +3,8 @@ Author: Luigi Piccinelli
 Licensed under the CC-BY NC 4.0 license (http://creativecommons.org/licenses/by-nc/4.0/)
 """
 
+from __future__ import annotations
+
 import importlib
 from copy import deepcopy
 from math import ceil
@@ -237,7 +239,9 @@ class UniDepthV2(
         return losses
 
     @torch.no_grad()
-    @torch.autocast(device_type="cuda", enabled=True, dtype=torch.float16)
+    @torch.autocast(
+        device_type="cuda", enabled=torch.cuda.is_available(), dtype=torch.float16
+    )
     def infer(
         self,
         rgb: torch.Tensor,

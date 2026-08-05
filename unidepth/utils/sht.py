@@ -5,6 +5,8 @@ https://github.com/cheind/torch-spherical-harmonics
 for more information.
 """
 
+from __future__ import annotations
+
 import torch
 
 

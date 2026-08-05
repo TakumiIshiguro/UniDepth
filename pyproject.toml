@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [tool.pyright]
@@ -12,7 +12,7 @@ authors = [{name = "Luigi Piccinelli", email = "lpiccinelli@ethz.ch"}]
 description = "UniDepth: Universal Monocular Metric Depth Estimation"
 readme = "README.md"
 license = { text="Creatives Common BY-NC 4.0 license"}
-requires-python = ">=3.10.0"
+requires-python = ">=3.8.0"
 dynamic = ["dependencies"]
 
 [tool.setuptools.dynamic]
