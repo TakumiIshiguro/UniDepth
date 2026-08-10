@@ -4,6 +4,7 @@
 #python
 *.pyc
 __pycache__/
+**/.pytest_cache/
 
 #scripts
 _*.sh
@@ -13,3 +14,8 @@ ___*.py
 **/build/
 **/dist/
 **/*.egg-info/
+
+# Local ROS inference artifacts
+/weights/*
+!/weights/README.md
+/runs/

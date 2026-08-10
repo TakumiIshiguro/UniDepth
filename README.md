@@ -7,6 +7,10 @@
 > **Python 3.8 branch:** see [PYTHON38.md](PYTHON38.md) for the tested
 > UniDepthV2 inference setup used with ROS Noetic.
 
+> **ROS Noetic package:** [`unidepth_ros`](unidepth_ros/README.md) provides
+> metric-depth images and robot-frame obstacle point clouds from this local
+> UniDepthV2 checkout.
+
 [![KITTI Benchmark](https://img.shields.io/badge/KITTI%20Benchmark-1st%20(at%20submission%20time)-orange)](https://www.cvlibs.net/datasets/kitti/eval_depth.php?benchmark=depth_prediction)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unidepthv2-universal-monocular-metric-depth/monocular-depth-estimation-on-nyu-depth-v2)](https://paperswithcode.com/sota/monocular-depth-estimation-on-nyu-depth-v2?p=unidepthv2-universal-monocular-metric-depth)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/unidepthv2-universal-monocular-metric-depth/monocular-depth-estimation-on-kitti-eigen)](https://paperswithcode.com/sota/monocular-depth-estimation-on-kitti-eigen?p=unidepthv2-universal-monocular-metric-depth)

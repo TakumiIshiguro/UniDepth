@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="config_file" default="$(find unidepth_ros)/config/unidepth.yaml"/>
+  <arg name="model_path_override" default=""/>
+  <arg name="device_override" default=""/>
+  <arg name="inference_rate_override" default="0.0"/>
+
+  <node
+    pkg="unidepth_ros"
+    type="unidepth_node.py"
+    name="unidepth"
+    output="screen"
+    required="true">
+    <param name="config_file" value="$(arg config_file)"/>
+    <param name="model_path_override" value="$(arg model_path_override)"/>
+    <param name="device_override" value="$(arg device_override)"/>
+    <param name="inference_rate_override" value="$(arg inference_rate_override)"/>
+  </node>
+</launch>
