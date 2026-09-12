@@ -1,0 +1,70 @@
+# Real robot (orne_gamma) configuration.
+# Differs from unidepth.yaml, which targets the Gazebo camera, only in the
+# depth section: everything below it is identical.
+
+depth:
+  # Relative paths are resolved from the UniDepth repository root.
+  model_path: weights/unidepth_v2_vits14_hf
+  resolution_level: 0
+  # Near-field metric correction, calibrated 2026-09-11 against the two
+  # ~/bags/real corridor bags, whose start pose has a wall about 1 m to each
+  # side of the camera. Fitting a line to each wall in base_footprint and
+  # evaluating it at the camera gives, at this value:
+  #   2026-09-11-19-25-01: left 0.97 m, right 1.03 m, width 2.00 m
+  #   2026-09-11-19-17-37: right 1.02 m  (its left side opens out, so that
+  #                        wall reads 1.40 m and was excluded)
+  # The value is 0.37 rather than the Gazebo camera's 0.6 because UniDepth
+  # overestimates range on this lens by roughly 2.7x.
+  depth_scale: 0.37
+  device: auto
+  # The real camera is a 170 deg fisheye whose measured horizontal field of
+  # view is 150 deg. Despite the name, gazebo_equidistant just builds a plain
+  # equidistant (r = f*theta) Fisheye624 with the principal point at the image
+  # centre and no distortion terms, which fits this lens: corridor walls come
+  # out straight in the bird's-eye view rather than bowed.
+  # estimated_pinhole is not usable here -- UniDepth would return a 3x3
+  # pinhole K, which cannot represent this field of view.
+  camera_model: gazebo_equidistant
+  horizontal_fov_rad: 2.618
+
+runtime:
+  inference_rate: 4.0
+  publish_color: true
+  color_min_percentile: 2.0
+  color_max_percentile: 98.0
+
+projection:
+  minimum_depth_m: 0.1
+  maximum_depth_m: 20.0
+  camera_optical_frame: camera_rgb_optical_frame
+  robot_frame: base_footprint
+  tf_timeout_seconds: 0.1
+  minimum_forward_m: 0.05
+  maximum_forward_m: 1.0
+  minimum_height_m: 0.1
+  maximum_height_m: 1.8
+  lateral_bins: 180
+  border_margin_ratio: 0.02
+  obstacle_width_m: 6.0
+  map_width_m: 2.0
+  map_height_m: 1.2
+  canvas_size: 512
+  obstacle_radius_cells: 2
+
+saving:
+  enabled: false
+  output_dir: runs/depth_estimation
+  save_raw_depth: true
+  save_color: true
+  save_obstacle_mask: true
+  save_obstacle_points_2d: true
+  save_occupancy_grid: true
+  save_map: true
+  save_panel: true
+
+topics:
+  image_topic: /camera_center/image_raw
+  depth_topic: /unidepth/depth
+  depth_color_topic: /unidepth/depth_color
+  obstacle_points_topic: /unidepth/obstacle_points
+  all_obstacle_points_topic: /unidepth/obstacle_points_all

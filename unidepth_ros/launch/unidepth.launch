@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="config_file" default="$(find unidepth_ros)/config/unidepth.yaml"/>
+  <arg name="config_file" default="$(find unidepth_ros)/config/unidepth_real.yaml"/>
   <arg name="model_path_override" default=""/>
   <arg name="device_override" default=""/>
   <arg name="inference_rate_override" default="0.0"/>
